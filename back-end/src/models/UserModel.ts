@@ -1,11 +1,7 @@
-export class User {
-  public readonly id?: string;
-  public readonly username: string;
-  public readonly password: string;
+import { ObjectId } from 'mongodb';
 
-  constructor(username: string, password: string, id?: string) {
-    this.username = username;
-    this.password = password;
-    this.id = id;
-  }
+export interface User {
+  _id: ObjectId;
+  username: string;
+  password: string;
 }
