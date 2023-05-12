@@ -26,7 +26,7 @@ class UserService {
       
       res.send('User created successfully');
       await connectorDB.close();
-    
-}
+};
+};
 
 export default UserService;
