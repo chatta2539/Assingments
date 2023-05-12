@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import connectorDB from '../databases/ConnectorDB';
 import UserService from '../services/UserService';
 import { User } from '../models/UserModel';
+const bcrypt = require('bcrypt');
+
 class UserController {
     public async getOneByUsername(req: Request, res: Response): Promise<void> {
         try {
@@ -17,7 +19,24 @@ class UserController {
             console.error(err);
             res.status(500).send('Internal server error');
         }
-    }
+    };
+
+    public async createUser(req: Request, res: Response): Promise<void>{
+        try {
+            const userService = new UserService();
+            const {username, password} = req.body;
+            const hashedPassword = await bcrypt.hash(password, 10);
+            const createUser = await userService.createUser(username, hashedPassword)
+            if (!createUser) {
+                res.status(404).send('User not found');
+            } else {
+                res.send('User created successfully');
+            }}
+        catch (err) {
+            console.error(err);
+            res.status(500).send('Internal server error');
+        }};
+}
 
     // public async getOneByUsername(req: Request, res: Response): Promise<void> {
     //     try {
@@ -63,6 +82,6 @@ class UserController {
     // }
 
 
-}
+
 
 export default UserController;
