@@ -1,7 +1,7 @@
 import express from "express";
 import jwt from 'jsonwebtoken';
-import UserController from "./controllers/UserController";
-import UsersRoute from "./routes/UserRoutes";
+// import UserController from "./controllers/UserController";
+import UsersRoute from "./routes/user.route";
 // const { MongoClient } = require('mongodb');
 const bcrypt = require('bcrypt');
 const secretKey = 'raehchester';
