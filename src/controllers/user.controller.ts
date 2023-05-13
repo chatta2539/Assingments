@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import connectorDB from '../databases/ConnectorDB';
-import UserService from '../services/UserService';
-import { User } from '../models/UserModel';
+import connectorDB from '../utils/ConnectorDB';
+import UserService from '../services/user.service';
+import { User } from '../models/user.model';
 const bcrypt = require('bcrypt');
 
 class UserController {

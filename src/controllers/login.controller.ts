@@ -2,14 +2,13 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { ObjectId } from 'mongodb';
-import { User } from '../models/UserModel';
-import Login from '../models/LoginModel';
-import UserService from '../services/UserService';
-
+import { User } from '../models/user.model';
+import Login from '../models/login.model';
+import UserService from '../services/user.service';
+import {secretKey} from '../utils/secretKey';
 class LoginController {
   public async login(req: Request, res: Response): Promise<void> {
     try {
-      const secretKey = "Chettha"
       const userService = new UserService();
       const { username, password } = req.body;
 

@@ -1,5 +1,5 @@
-import connectorDB from '../databases/ConnectorDB';
-import { User } from '../models/UserModel';
+import connectorDB from '../utils/ConnectorDB';
+import { User } from '../models/user.model';
 
 class UserService {
   public async getByName(username: string): Promise<User | null> {
