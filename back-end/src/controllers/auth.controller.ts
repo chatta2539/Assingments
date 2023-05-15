@@ -9,7 +9,7 @@ class AuthController {
         var decoded = jwt.verify(token, secretKey);
         res.json({message: "authorization success !", decoded});
       } catch (error) {
-        res.status(500).send({secretKey, message: 'authorization error'});
+        res.status(404).send({secretKey, message: 'authorization error'});
       }
     }
   }

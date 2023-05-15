@@ -8,7 +8,7 @@ class UserController {
     public async getOneByUsername(req: Request, res: Response): Promise<void> {
         try {
             const userService = new UserService();
-            const username = req.params.username;
+            const { username } = req.body;
             const user = await userService.getByName(username);
             if (!user) {
                 res.status(404).send({ message: 'User not found' });
@@ -16,6 +16,29 @@ class UserController {
             } else {
                 res.send({ user });
                 return
+            }
+             
+        } catch (err) {
+            console.error(err);
+            res.status(500).send({ message: 'Internal server error' });
+            return
+        }
+    };
+
+    public async getOneByUserId(req: Request, res: Response): Promise<void> {
+        try {
+            const userService = new UserService();
+            const { userId } = req.body;
+            console.log(userId)
+            // return
+            const userIdResult = await userService.getByNameId(userId);
+
+            if (!userIdResult) {
+                res.status(404).send({ message: 'User not found' });
+                return
+            } else {
+                res.send({ userIdResult });
+                return 
             }
              
         } catch (err) {

@@ -1,5 +1,7 @@
 import connectorDB from '../utils/ConnectorDB';
 import { User } from '../models/user.model';
+import { ObjectId } from 'mongodb';
+
 
 class UserService {
   public async getByName(username: string): Promise<User | null> {
@@ -12,7 +14,22 @@ class UserService {
       }
       return result;
     } catch (err) {
-      console.error(err);
+      console.log(err);
+    }
+  };
+
+  public async getByNameId(userId: string): Promise<User | null> {
+    try {
+      
+      const database = connectorDB.db('mydatabase');
+      const collection = database.collection('users');
+      const result = await collection.findOne({ _id: new ObjectId(userId) });
+      if (!result) {
+        return null;
+      }
+      return result;
+    } catch (err) {
+      console.log(err);
     }
   };
 
