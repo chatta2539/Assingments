@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
-import Device from "./device"
-import Login from "./login"
+import LoginForm from './components/LoginForm';
+import ListDevice from './components/ListDevice';
+import AddDevice from './components/AddDevice';
+
 import {SeriesProps} from './interfaces/SeriesProps'
-import Form from './components/Form'
-import List from './components/List'
 
 
 
@@ -14,12 +14,16 @@ function App() {
   return (
     <div className="App">
       
+      <AddDevice/>
+      <ListDevice/>
+      
 
-      <Routes>
-        <Route path="/" element={<Login/>}/>
-        <Route path="login" element={<Login/>}/>
-        <Route path="device" element={<Device/>}/>
-      </Routes>
+      {/* <Routes>
+        <Route path="/" element={<LoginForm/>}/>
+        <Route path="login" element={<LoginForm/>}/>
+        <Route path="device" element={<ListDevice/>}/>
+        <Route path="add" element={<AddDevice/>}/>
+      </Routes> */}
     
     </div>
   );
