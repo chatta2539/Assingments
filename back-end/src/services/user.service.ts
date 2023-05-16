@@ -54,13 +54,13 @@ class UserService {
       const collection = database.collection('users');
       const existingUser = await collection.findOne({ username });
       if (existingUser) {
-        await connectorDB.close();
+        // await connectorDB.close();
         return existingUser
       }
       const insertdb = await collection.insertOne({ username, password, email });
 
       const resultdb = await collection.findOne({ username });
-      await connectorDB.close();
+      // await connectorDB.close();
       return resultdb;
     }
     catch (err) {

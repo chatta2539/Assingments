@@ -12,9 +12,9 @@ class DeviceService {
             if (existingDevice) {
                 return existingDevice
             }
-            const insertdb = await collection.insertOne({ devicename });
-            const resultdb = await collection.findOne({ devicename });
-            return resultdb;
+            const insertdb = await collection.insertOne({ devicename }) as Device;
+            // const resultdb = await collection.findOne({ devicename });
+            return insertdb;
         }
         catch (err) {
             console.log(err);
