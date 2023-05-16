@@ -34,7 +34,6 @@ class DeviceController {
         try {
             const deviceService = new DeviceService();
             const alldevice: Device[] = await deviceService.getAllDevice();
-            
             res.json({ alldevice });
         } catch (err) {
             console.log(err);
@@ -42,46 +41,42 @@ class DeviceController {
             return
         }
     };
+
     public async updateDeviceName(req: Request, res: Response): Promise<Device> {
         try {
             const { _id, newdevicename } = req.body;
             const deviceService = new DeviceService();
-            const updatenewdevice: Device[] = await deviceService.updateNewDeviceName( _id, newdevicename);
-            res.send({ message: `Device ${newdevicename} already updated ` ,updatenewdevice });
-
+            const updatenewdevice: Device[] = await deviceService.updateNewDeviceName(_id, newdevicename);
             if (!updatenewdevice) {
                 res.status(404).send('Devicename not found');
                 return null
-              }
+            }
+            res.send({ message: `Device ${newdevicename} already updated `, updatenewdevice });
         } catch (err) {
             console.log(err);
             res.status(500).send({ message: 'Internal server error' });
             return
         }
     };
-    // public async getOneByUsername(req: Request, res: Response): Promise<void> {
-    //     try {
-    //         const deviceService = new DeviceService();
-    //         const username = req.params.username;
-    //         const user = await userService.getByName(username);
-    //         if (!user) {
-    //             res.status(404).send({ message: 'User not found' });
-    //             return
-    //         } else {
-    //             res.send({ user });
-    //             return
-    //         }
-             
-    //     } catch (err) {
-    //         console.error(err);
-    //         res.status(500).send({ message: 'Internal server error' });
-    //         return
-    //     }
-    // };
 
-    
+    public async deleteDeviceId(req: Request, res: Response): Promise<Device> {
+        try {
+            const { _id , devicename } = req.body;
+            const deviceService = new DeviceService();
+            const deletenewdevice: Device[] = await deviceService.deleteByDeviceId(_id);
 
-    
+            if (!deletenewdevice) {
+                res.status(404).send({ message: `Device ${devicename} not found` });
+                return null
+            } else {
+                res.send({ message: `Device ${devicename} already deleted` });
+            }} 
+        catch (err) {
+            console.log(err);
+            res.status(500).send({ message: 'Internal server error' });
+            return
+        }
+    };
 }
 
 
