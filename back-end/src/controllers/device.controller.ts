@@ -54,14 +54,14 @@ class DeviceController {
 
     public async updateDeviceName(req: Request, res: Response): Promise<Device> {
         try {
-            const { _id, newdevicename } = req.body;
+            const { _id, devicename } = req.body;
             const deviceService = new DeviceService();
-            const updatenewdevice: Device[] = await deviceService.updateNewDeviceName(_id, newdevicename);
+            const updatenewdevice: Device[] = await deviceService.updateNewDeviceName(_id, devicename);
             if (!updatenewdevice) {
                 res.status(404).send('Devicename not found');
                 return null
             }
-            res.send({ message: `Device ${newdevicename} already updated `, updatenewdevice });
+            res.send({ message: `Device ${devicename} already updated `, updatenewdevice });
         } catch (err) {
             console.log(err);
             res.status(500).send({ message: 'Internal server error' });
