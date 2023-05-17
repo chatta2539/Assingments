@@ -16,7 +16,7 @@ class DeviceRoute {
         this.router.get(`${this.pathDevice}/:name`, authMiddleware, this.deviceController.getDeviceByName);
         this.router.put(`${this.pathDevice}`, authMiddleware, this.deviceController.updateDeviceName);
         this.router.post(`${this.pathDevice}/:name`, authMiddleware, this.deviceController.createDevice);
-        this.router.delete(`${this.pathDevice}/:id`, authMiddleware, this.deviceController.deleteDeviceId);
+        this.router.delete(`${this.pathDevice}`, authMiddleware, this.deviceController.deleteDeviceId);
     }
 }
 export default DeviceRoute;
