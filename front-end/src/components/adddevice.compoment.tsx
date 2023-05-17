@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@mui/material';
+import { DeviceProps } from '../interfaces/DeviceProps';
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom';
 
-interface Device {
-  id: number;
-  deviceName: string;
-}
+
+import withReactContent from 'sweetalert2-react-content'
 
 interface DeviceListProps {
-  devices: Device[];
-  setDevices: React.Dispatch<React.SetStateAction<Device[]>>;
+  devices: DeviceProps[];
+  setDevices: React.Dispatch<React.SetStateAction<DeviceProps[]>>;
 }
 
 const AddDevice: React.FC<DeviceListProps> = ({ devices, setDevices }) => {
+  const MySwal = withReactContent(Swal)
+  const navigate = useNavigate()
+
+
   const [open, setOpen] = useState(false);
   const [deviceName, setDeviceName] = useState('');
 
@@ -29,22 +34,42 @@ const AddDevice: React.FC<DeviceListProps> = ({ devices, setDevices }) => {
       return;
     }
 
-    const newDevice: Device = {
-      id: devices.length + 1,
-      deviceName: deviceName.trim(),
+    const newDevice: DeviceProps = {
+      devicename: deviceName.trim(),
     };
+    console.log(newDevice)
+    // alert(newDevice['devicename'])
+    const token = localStorage.getItem('token')
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer " + token);
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      redirect: 'follow' as RequestRedirect
+    };
+
+    fetch("http://192.168.2.74:3000/api/device/" + newDevice['devicename'], requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        const resultJson = JSON.parse(result);
+        const message: string = `Device ${newDevice['devicename']} created successfully`
+
+        if (resultJson.message === message) {
+          MySwal.fire({
+            html: <i>{message}</i>,
+            icon: 'success'
+          }).then((value) => {
+            navigate('/devicepage')
+          })
+        }})
+      .catch(error => console.log('error', error));
 
     setDevices(prevDevices => [...prevDevices, newDevice]);
     handleCloseDialog();
   };
 
   return (
-    <div style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}>
+    <div>
       <Button variant="contained" color="primary" onClick={handleOpenDialog}>
         Add Device
       </Button>

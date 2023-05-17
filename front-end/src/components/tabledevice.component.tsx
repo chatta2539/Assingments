@@ -71,14 +71,7 @@ const ListDevice: React.FC = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        width: "80%",
-      }}
-    >
+    <div    >
       <div>
         <TableContainer component={Paper}>
           <Table>

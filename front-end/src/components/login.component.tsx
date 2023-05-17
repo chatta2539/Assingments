@@ -50,10 +50,7 @@ const LoginForm: React.FC = () => {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
+        width: "90%",
       }}
     >
       <Card sx={{ width: 300 }}>
