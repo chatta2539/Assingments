@@ -14,7 +14,7 @@ import DialogActions from "@mui/material/DialogActions";
 import TextField from "@mui/material/TextField";
 import AddDevice from "../components/adddevice.compoment";
 import { DeviceProps } from "../interfaces/DeviceProps";
-
+import { api_end_point } from "../utils/EndPoint";
 // interface DeviceProps {
 //   id: string;
 //   devicename: string;
@@ -37,7 +37,7 @@ const ListDevice: React.FC = () => {
       redirect: 'follow' as RequestRedirect
     };
 
-    fetch("http://192.168.2.74:3000/api/device", requestOptions)
+    fetch( api_end_point + "/api/device", requestOptions)
       .then(response => response.text())
       .then(result => {
         console.log(result);

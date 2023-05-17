@@ -3,7 +3,7 @@ import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField } 
 import { DeviceProps } from '../interfaces/DeviceProps';
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom';
-
+import { api_end_point } from '../utils/EndPoint';
 
 import withReactContent from 'sweetalert2-react-content'
 
@@ -48,7 +48,7 @@ const AddDevice: React.FC<DeviceListProps> = ({ devices, setDevices }) => {
       redirect: 'follow' as RequestRedirect
     };
 
-    fetch("http://192.168.2.74:3000/api/device/" + newDevice['devicename'], requestOptions)
+    fetch(api_end_point + "/api/device/" + newDevice['devicename'], requestOptions)
       .then(response => response.text())
       .then(result => {
         const resultJson = JSON.parse(result);

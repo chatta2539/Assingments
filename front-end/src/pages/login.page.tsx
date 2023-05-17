@@ -3,7 +3,7 @@ import { UserProps } from '../interfaces/UserProps';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import { api_end_point } from '../utils/EndPoint';
 
 
 function LoginPage() {
@@ -37,7 +37,7 @@ function LoginPage() {
             redirect: 'follow' as RequestRedirect
         };
 
-        fetch("http://192.168.2.74:3000/api/login", requestOptions)
+        fetch( api_end_point + "/api/login", requestOptions)
             .then(response => response.text())
             .then(result => {
                 const resultJson = JSON.parse(result);
