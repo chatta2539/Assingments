@@ -5,20 +5,23 @@ import { User } from '../models/user.model';
 const bcrypt = require('bcrypt');
 
 class UserController {
-    public async getOneByUsername(req: Request, res: Response): Promise<void> {
+    public async getOneByUsername(req: Request, res: Response): Promise<User> {
         try {
             const userService = new UserService();
-            const { username } = req.body;
+            // const { username } = req.body;
+            const username = req.params.username;
+            console.log(username)
             const user = await userService.getByName(username);
             if (!user) {
                 res.status(404).send({ message: 'User not found' });
                 return
             } else {
-                res.send({ user });
-                return
+                
             }
-             
+            res.send({ user });
+            return
         } catch (err) {
+
             console.error(err);
             res.status(500).send({ message: 'Internal server error' });
             return
@@ -28,7 +31,9 @@ class UserController {
     public async getOneByUserId(req: Request, res: Response): Promise<void> {
         try {
             const userService = new UserService();
-            const { userId } = req.body;
+            // const { userId } = req.body;
+            const userId = req.params.id;
+
             console.log(userId)
             // return
             const userIdResult = await userService.getByNameId(userId);

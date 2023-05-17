@@ -8,6 +8,7 @@ class UserService {
     try {
       const database = connectorDB.db('mydatabase');
       const collection = database.collection('users');
+      // console.log(username)
       const result = await collection.findOne({ username });
       if (!result) {
         return null;

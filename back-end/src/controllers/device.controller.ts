@@ -8,14 +8,16 @@ class DeviceController {
         try {
             const deviceService = new DeviceService();
             const devicename  = req.params.name;
-            console.log(devicename)
+            // console.log(devicename)
 
             const checkExistingDevice = await deviceService.getDeviceByName(devicename);
             if (checkExistingDevice) {
                 res.status(409).send({ message: `Device ${devicename} already exists` });
                 return
+            }else{
+                const createDevice = await deviceService.createDevice(devicename);
+                res.send({ message: `Device ${devicename} created successfully` });
             }
-            res.send({ message: `Device ${devicename} created successfully` });
             return
         }
         catch (err) {

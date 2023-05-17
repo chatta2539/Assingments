@@ -13,6 +13,7 @@ class DeviceService {
                 return existingDevice
             }
             const insertdb = await collection.insertOne({ devicename }) as Device;
+            console.log("INSERT")
             // const resultdb = await collection.findOne({ devicename });
             return insertdb;
         }
@@ -47,7 +48,7 @@ class DeviceService {
         try {
             const database = connectorDB.db('mydatabase');
             const collection = database.collection('devices');
-            const allDevice = await collection.find().toArray();
+            const allDevice: [] = await collection.find().toArray();
 
             if (!allDevice) {
                 return null;

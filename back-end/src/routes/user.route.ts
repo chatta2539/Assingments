@@ -15,7 +15,7 @@ class UserRoute {
     private initializeRoutes() {
         this.router.get(`${this.pathUser}`, authMiddleware, this.userController.getAllUser);
         this.router.get(`${this.pathUser}/:id`, authMiddleware, this.userController.getOneByUserId);
-        this.router.get(`${this.pathUser}/:name`, authMiddleware, this.userController.getOneByUsername);
+        this.router.get(`${this.pathUser}/name/:username`, authMiddleware, this.userController.getOneByUsername);
         this.router.post(`${this.pathUser}`, authMiddleware, this.userController.createUser);
     }
 }
