@@ -5,8 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import ListDevice from './components/tabledevice.component';
 import AddDevice from './components/adddevice.compoment';
 import LoginForm from './components/login.component';
-import LoginPage from './pages/login.page';
-import DevicePage from './pages/device.page';
 import { DeviceProps } from './interfaces/DeviceProps';
 
 const App: React.FC = () => {
@@ -16,16 +14,38 @@ const App: React.FC = () => {
     <div>
       <div className="App">
         <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/devicepage" element={<DevicePage />} />
+          <Route path="/logintest" element={<LoginForm />} />
 
-          {/* <Route path="/logintest" element={<LoginForm />} /> */}
-
-          {/* <Route path="/devicelist" element={<AddDevice devices={devices} setDevices={setDevices} /> } /> */}
+          <Route path="/list" element={<AddDevice devices={devices} setDevices={setDevices} /> } />
         </Routes>
+        {/* <div>
+          <div style={{ padding: "35px" }} >
+            <ListDevice />
+          </div>
+          <div>
+            <AddDevice devices={devices} setDevices={setDevices} />
+          </div>
+        </div> */}
       </div>
 
 
+
+      {/* <Routes>
+      <Route path="/" element={<LoginForm />}>
+        <Route path="login" element={<LoginForm />}>
+          <Route path="device" element={<div className="App">
+            <div>
+              <div style={{ padding: "35>px" }} >
+                <ListDevice />
+              </div>
+              <div>
+                <AddDevice devices={devices} setDevices={setDevices} />
+              </div>
+            </div>
+          </div>
+        } />
+
+        </Routes> */}
     </div>
   );
 };
