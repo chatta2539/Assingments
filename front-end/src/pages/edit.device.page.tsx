@@ -84,7 +84,7 @@ function EditDevice() {
                 <Box display="flex" marginBottom={2} >
                     <Box sx={{ flexGrow: 1 }}>
                         <Typography variant="h5" gutterBottom>
-                            ADD DEVICE
+                            EDIT DEVICE
                         </Typography>
                     </Box>
                     <Box>
