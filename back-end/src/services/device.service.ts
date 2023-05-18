@@ -13,15 +13,10 @@ class DeviceService {
                 return existingDevice
             }
             const insertdb = await collection.insertOne({ devicename }) as Device;
-            console.log("INSERT")
-            // const resultdb = await collection.findOne({ devicename });
             return insertdb;
         }
         catch (err) {
             console.log(err);
-        } 
-        finally {
-            // await connectorDB.close();
         }
     };
 
@@ -38,9 +33,6 @@ class DeviceService {
         catch (err) {
             console.log(err);
         } 
-        finally {
-            // await connectorDB.close();
-        }
     };
 
     public async getAllDevice(): Promise<Device[]> {
@@ -58,9 +50,6 @@ class DeviceService {
         catch (err) {
             console.log(err);
         } 
-        finally {
-            // await connectorDB.close();
-        }
     };
 
     public async updateNewDeviceName(id: string, newUsername: string): Promise<Device[]> {
@@ -79,9 +68,7 @@ class DeviceService {
             return updatenewdevice.value;
         } catch (err) {
             console.log(err);
-        } finally {
-            // await connectorDB.close();
-        }
+        } 
     };
 
     public async deleteByDeviceId(id: string): Promise<Device[]> {
@@ -98,9 +85,7 @@ class DeviceService {
             }
         } catch (err) {
             console.log(err);
-        } finally {
-            // await connectorDB.close();
-        }
+        } 
     };
 };
 

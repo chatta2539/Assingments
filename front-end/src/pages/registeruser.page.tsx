@@ -4,7 +4,8 @@ import { Container, Grid, TextField, Typography, Button, CssBaseline, Box } from
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { api_end_point } from '../utils/EndPoint';
-import Navbar from '../components/navbar.component';
+import NavbarLogin from '../components/navbar.login.component';
+
 
 function RegisterUser() {
     const MySwal = withReactContent(Swal)
@@ -57,7 +58,7 @@ function RegisterUser() {
 
         <React.Fragment>
             <CssBaseline />
-            <Navbar/>
+            <NavbarLogin />
             <Container maxWidth="sm" sx={{ p: 2 }}>
             <Box display="flex" >
                     <Box sx={{ flexGrow: 1 }}>
@@ -66,7 +67,7 @@ function RegisterUser() {
                         </Typography>
                     </Box>
                     <Box>
-                        <Button variant="contained" onClick={() => navigate('/')}>Signup</Button>
+                        <Button variant="contained" onClick={() => navigate('/')}>back</Button>
                     </Box>
                 </Box>
                 <form onSubmit={handleSubmit}>
