@@ -99,7 +99,7 @@ function EditDevice() {
                                 value={name} />
                         </Grid>
                         <Grid item xs={12}>
-                            <Button type='submit' variant="contained" fullWidth >ADD DEVICE</Button>
+                            <Button type='submit' variant="contained" fullWidth >SAVE</Button>
                         </Grid>
                     </Grid>
                 </form>
