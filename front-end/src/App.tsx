@@ -14,8 +14,8 @@ const App: React.FC = () => {
       <div>
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/devicepage" element={<DevicePage />} />
           <Route path="/signup" element={<RegisterUser />} />
+          <Route path="/devicepage" element={<DevicePage />} />
           <Route path="/adddevice" element={<RegisterDevice />} />
           <Route path="/devicepage/editdevice/:id" element={<EditDevice />} />
         </Routes>

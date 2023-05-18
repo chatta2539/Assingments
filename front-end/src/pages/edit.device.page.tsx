@@ -29,6 +29,10 @@ function EditDevice() {
             .then(response => response.text())
             .then(result => {
                 const resultJson = JSON.parse(result);
+                if( resultJson.message === "Unauthorized"){
+                    navigate('/')
+                    Swal.fire("Unauthorized Please login")
+                }
                 setName(resultJson['result']['devicename']);
                 setIddevice(resultJson['result']['_id']);
             })
