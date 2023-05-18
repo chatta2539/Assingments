@@ -7,9 +7,47 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 export default function Navbar() {
   const navigate = useNavigate()
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: true
+  })
+
+  function SignOut(): void {
+    swalWithBootstrapButtons.fire({
+      title: 'Logout?',
+      text: `Are you sure you want to Logout from Wonderful application ;)`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, I do',
+      cancelButtonText: 'No, Stay login',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire(
+          'LOGOUT!',
+          `Your devicehas been deleted.`,
+          'success'
+        )
+        navigate('/')
+        localStorage.setItem('token', "")
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Stay login :)',
+          'success'
+        )
+      }
+    })
+  }
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -28,8 +66,8 @@ export default function Navbar() {
             Chettha Narohim
           </Typography>
           <Button color="inherit" onClick={() => {
-            navigate('/')
-            localStorage.setItem('token', "")
+            SignOut()
+
           }}>Logout</Button>
         </Toolbar>
       </AppBar>

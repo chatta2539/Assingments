@@ -43,6 +43,11 @@ export default function DevicePage() {
                 console.log(result);
                 const resultJson = JSON.parse(result)
                 setData(resultJson.alldevice)
+                if( resultJson.message === "Unauthorized"){
+                    navigate('/')
+                    Swal.fire(resultJson.message)
+
+                }
             })
             .catch(error => console.log('error', error));
 
@@ -98,11 +103,10 @@ export default function DevicePage() {
                     console.log(result)
                     UserGet()
                 })
-                .catch(error => console.log('error', error));
+                .catch(error => {console.log('error', error); navigate('/')});
 
             UserGet()
             } else if (
-              /* Read more about handling dismissals below */
               result.dismiss === Swal.DismissReason.cancel
             ) {
               swalWithBootstrapButtons.fire(
@@ -112,12 +116,6 @@ export default function DevicePage() {
               )
             }
           })
-        // const confirmDelete = window.confirm(`Are you sure you want to delete user '${devicename}'?`);
-        // if (confirmDelete) {
-        //     console.log(id + "   " + devicename)
-
-        //     
-        // }
     }
 
 
